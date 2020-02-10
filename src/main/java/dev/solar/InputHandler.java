@@ -3,7 +3,7 @@ package dev.solar;
 import java.util.Scanner;
 
 public class InputHandler {
-    Scanner scanner;
+    private Scanner scanner;
 
     public InputHandler(Scanner scanner) {
         this.scanner = scanner;

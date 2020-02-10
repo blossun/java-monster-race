@@ -56,12 +56,12 @@ public class MonsterRace {
             String inputMonsterType = monsterInfo[1];
             MonsterType monsterType = MonsterType.valueOfType(inputMonsterType);
 
-            switch (monsterType.type) {
+            switch (monsterType.getMonsterTypeName()) {
                 case "달리기": return new Run(inputMonsterName, inputMonsterType);
                 case "비행": return new Fly(inputMonsterName, inputMonsterType);
                 case "에스퍼": return new Espurr(inputMonsterName, inputMonsterType);
+                default: throw new IllegalArgumentException("다시 입력해주세요.");
             }
-            throw new IllegalArgumentException("다시 입력해주세요.");
         } catch (ArrayIndexOutOfBoundsException e) { //구분자 에러 처리
             System.out.println("형식에 맞게 입력해주세요. [이름, 타입]");
             return createMonster();
@@ -85,12 +85,13 @@ public class MonsterRace {
     private void printWinner() {
         Monster winner = pickWinner();
 
-        System.out.printf("축하합니다! %s가 몬스터 레이스에서 우승했습니다.", winner.getMonsterName());
+        System.out.printf("축하합니다! %s(이)가 몬스터 레이스에서 우승했습니다.", winner.getMonsterName());
     }
 
     private Monster pickWinner() {
         Comparator<Monster> comparator = Comparator.comparing(Monster::getForwardPosition);
         Monster winner = monsters.stream().max(comparator).get();
+
         return winner;
     }
 

@@ -43,7 +43,7 @@ abstract class Monster {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(monsterName).append(" [").append(monsterType.type).append("] : ");
+        sb.append(monsterName).append(" [").append(monsterType.getMonsterTypeName()).append("] : ");
         IntStream.range(0, forwardPosition).forEach(i -> sb.append("-"));
         return sb.toString();
     }
